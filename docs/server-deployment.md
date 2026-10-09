@@ -16,6 +16,9 @@ From the deployment directory:
 ```sh
 docker compose -f compose.yaml -f compose.server.yaml config --quiet
 docker compose -f compose.yaml -f compose.server.yaml pull hermes
+# The pinned image runs Hermes as UID/GID 10000.
+chown 10000:10000 workspace
+chmod 750 workspace
 docker compose -f compose.yaml -f compose.server.yaml run --rm -T hermes /opt/hermes/.venv/bin/python /deployment/runtime.py initialize
 docker compose -f compose.yaml -f compose.server.yaml run --rm -T hermes /opt/hermes/.venv/bin/python /deployment/skills.py install
 docker compose -f compose.yaml -f compose.server.yaml create hermes
