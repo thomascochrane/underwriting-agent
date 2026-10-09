@@ -1,0 +1,30 @@
+name: zivoe-agents
+
+services:
+  hermes:
+    # Official stable image, pinned after download on 2026-10-08.
+    # Upstream revision: 818c13be1dc4fd28987e1e881a9408224afd4535
+    image: nousresearch/hermes-agent@sha256:9774f4f39a9bb8c2f68ce728ed5e99ddbad282163be56764afacf88ed952b784
+    restart: unless-stopped
+    stop_grace_period: 60s
+    working_dir: /workspace
+    environment:
+      TZ: America/Phoenix
+      HERMES_HOME: /opt/data
+      HERMES_DASHBOARD: "0"
+      API_SERVER_ENABLED: "false"
+    # Telegram long polling and future IMAP need outbound access only.
+    # No host ports, Docker socket, host credentials, or full home-directory mounts.
+    volumes:
+      - hermes-state:/opt/data
+      - ./workspace:/workspace
+      - ./deployment:/deployment:ro
+    command: ["/opt/hermes/.venv/bin/python", "/deployment/runtime.py", "gateway"]
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  hermes-state:

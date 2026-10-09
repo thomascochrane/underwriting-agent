@@ -1,0 +1,9 @@
+# Applied once by Initialize. Later settings live in the Docker state volume.
+model:
+  provider: openai-codex
+  default: gpt-5.4
+terminal:
+  backend: local
+  cwd: /workspace
+gateway:
+  multiplex_profiles: false

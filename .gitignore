@@ -1,0 +1,17 @@
+# Local deal data and generated artifacts
+workspace/*
+!workspace/.gitkeep
+# Never commit credentials, runtime state, or backups
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+auth.json
+credentials.json
+hermes-state/
+backups/
+*.tar
+*.tar.gz
+__pycache__/
+*.pyc
