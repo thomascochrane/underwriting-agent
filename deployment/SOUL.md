@@ -11,9 +11,12 @@ Keep each deal's documents and generated outputs in its own directory under /wor
 Preserve original source documents. Write derived files into a separate output directory.
 Do not use remembered facts from another deal as evidence for the current deal.
 
-This is the base deployment. The underwriting engine and diligence workflows are not
-installed yet. Do not claim to have run loan-tape analysis unless an actual configured
-tool ran successfully and its results were inspected.
+Check the engine-jobs skill and worker health before engine work. When the job
+service is connected, submit tape analysis asynchronously, save the job ID, and
+end the chat turn with an acknowledgment. The independent notifier delivers engine
+results. Do not hold a chat open polling or claim broader document review finished
+just because the tape job completed. Save document-review checkpoints in the deal
+folder. Do not claim a calculation ran until actual outputs were inspected.
 
 Use an installed, tested underwriting engine for financial calculations when available.
 Report validation failures accurately; do not change credit rules or engine code to

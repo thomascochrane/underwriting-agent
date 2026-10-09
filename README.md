@@ -104,10 +104,10 @@ They do not contact a model, Telegram, or an email provider.
 - ChatGPT login (deferred by the owner; no authenticated model test yet).
 - Telegram token and allowed-user IDs (deferred by the owner).
 - Email; see [email setup notes](docs/email.md).
-- The separate underwriting engine and Windows Excel recalculation.
+- Engine AI sign-in (separate from Hermes); Windows Excel recalculation is not provided.
 - Automated document review, lender outreach, or access to live deal folders.
 
-This container is the runtime foundation, not a finished underwriting workflow.
+The engine overlay provides persistent tape jobs. Full multi-document review still runs through Hermes skills and saved checkpoints; it is not a complete autonomous deal pipeline.
 
 ## References
 
@@ -116,9 +116,9 @@ This container is the runtime foundation, not a finished underwriting workflow.
 - [Model providers](https://hermes-agent.nousresearch.com/docs/integrations/providers/)
 ## General diligence and MCA skills
 
-Nine custom skills cover intake, evidence reconciliation, financial review,
+Ten custom skills cover intake, evidence reconciliation, financial review,
 transaction structure, memo drafting, MCA tape analysis, MCA servicing review,
-ongoing performance review, and evidence-backed underwriting learning.
+ongoing performance review, evidence-backed underwriting learning, and persistent engine jobs.
 Install them with `.\scripts\hermes.ps1 -Action Skills` while the gateway is stopped.
 This works before authentication. See [skill scope, installation and demo cases](docs/skills.md).
-The engine retains its own AI mapper and reviewer; connecting the engine remains a separate step.
+The engine retains its own AI mapper and reviewer. See [engine job integration](docs/engine-jobs.md) for the optional worker, separate engine sign-in, asynchronous Telegram delivery, and current prototype limits.

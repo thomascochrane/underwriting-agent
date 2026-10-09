@@ -1,6 +1,6 @@
 # Underwriting skills
 
-Nine custom skills (version 0.2.0) are versioned in `deployment/skills/`. These are procedural instructions for the current underwriting profile, not separate agents or profiles. The existing engine retains its AI mapper and reviewer.
+Ten custom skills (versions recorded in their frontmatter) are versioned in `deployment/skills/`. These are procedural instructions for the current underwriting profile, not separate agents or profiles. The existing engine retains its AI mapper and reviewer.
 
 | Scope | Skill | Expected output |
 | --- | --- | --- |
@@ -11,6 +11,7 @@ Nine custom skills (version 0.2.0) are versioned in `deployment/skills/`. These 
 | General | credit-memo-drafting | Draft memo and consolidated lender questions |
 | General | portfolio-performance-review | Reporting variances and original-thesis monitoring |
 | General | underwriting-learning | Persistent case history and evidence-linked lessons |
+| General | engine-jobs | Persistent engine submission, status and delivery tracking |
 | MCA | mca-tape-analysis | Engine run summary, artifacts and limitations |
 | MCA | mca-underwriting-servicing | Policy/practice review and focused questions |
 
@@ -31,7 +32,7 @@ Run Skills on fresh deployments as well as this existing deployment. Initialize 
 
 ## Current capability boundaries
 
-- The engine connection is pending. The MCA tape skill documents the existing CLI but checks that the engine is actually available before attempting analysis.
+- The engine-jobs skill uses the optional worker overlay and checks its heartbeat before submission. Engine authentication is a separate prerequisite for AI-assisted runs.
 - Engine AI authentication is separate from Hermes authentication. No model or Telegram credentials are added by skill installation.
 - PDF/Word/Excel handling builds on bundled skills and available tools; availability of instructions alone does not prove OCR or every dependency works.
 - No live deal folder is mounted by this change. Outputs stay under the selected accessible deal directory.
@@ -71,7 +72,7 @@ The [synthetic evaluation pack](../evaluation/README.md) contains fictional inpu
 separate reviewer rubric. The Test action checks fixture arithmetic and consistency.
 The fixture is not mounted into normal Hermes conversations and the rubric must be withheld
 from a future model-backed evaluation. That evaluation remains NOT RUN.
-The earlier CRM/person-specific workflows are not part of this deployment. Only the nine underwriting skills are custom-installed; generic upstream skills, including document handling, remain available.
+The earlier CRM/person-specific workflows are not part of this deployment. Only the ten underwriting skills are custom-installed; generic upstream skills, including document handling, remain available.
 
 ## Learning and ongoing reporting
 

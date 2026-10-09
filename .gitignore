@@ -15,3 +15,9 @@ backups/
 *.tar.gz
 __pycache__/
 *.pyc
+# Engine integration state and private source snapshot
+job-state/
+channel-state/
+engine/source/
+engine.env
+engine/build-provenance.json

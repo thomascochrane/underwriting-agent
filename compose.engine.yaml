@@ -1,0 +1,62 @@
+# Optional engine integration. Its resolved content-addressed image lives in engine.env.
+services:
+  hermes:
+    volumes:
+      - ./job-state:/jobs
+      - ./channel-state:/job-channel
+  engine-worker:
+    image: ${UNDERWRITER_IMAGE:?Set UNDERWRITER_IMAGE to the built image SHA256 in engine.env}
+    pull_policy: never
+    restart: unless-stopped
+    init: true
+    stop_grace_period: 30s
+    user: "10000:10000"
+    working_dir: /jobs
+    mem_limit: 3g
+    memswap_limit: 3g
+    cpus: 1.5
+    pids_limit: 256
+    environment:
+      UNDERWRITER_JOB_TIMEOUT: "3600"
+    volumes:
+      - ./deployment:/deployment:ro
+      - ./job-state:/jobs
+      - engine-logins:/logins
+    healthcheck:
+      test: ["CMD", "/opt/engine-venv/bin/python", "/deployment/jobs/health.py", "worker"]
+      interval: 30s
+      timeout: 10s
+      start_period: 30s
+      retries: 3
+    logging:
+      driver: json-file
+      options: {max-size: "10m", max-file: "3"}
+  engine-notifier:
+    image: nousresearch/hermes-agent@sha256:9774f4f39a9bb8c2f68ce728ed5e99ddbad282163be56764afacf88ed952b784
+    restart: unless-stopped
+    init: true
+    user: "10000:10000"
+    entrypoint: ["/opt/hermes/.venv/bin/python"]
+    command: ["/deployment/jobs/notifier.py"]
+    working_dir: /jobs
+    mem_limit: 256m
+    memswap_limit: 256m
+    cpus: 0.25
+    pids_limit: 64
+    environment:
+      PYTHONDONTWRITEBYTECODE: "1"
+    volumes:
+      - ./deployment:/deployment:ro
+      - ./job-state:/jobs
+      - ./channel-state:/job-channel:ro
+    healthcheck:
+      test: ["CMD", "/opt/hermes/.venv/bin/python", "/deployment/jobs/health.py", "notifier"]
+      interval: 30s
+      timeout: 10s
+      start_period: 30s
+      retries: 3
+    logging:
+      driver: json-file
+      options: {max-size: "10m", max-file: "3"}
+volumes:
+  engine-logins:

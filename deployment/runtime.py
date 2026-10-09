@@ -85,7 +85,15 @@ def configure_telegram() -> None:
     set_key(str(env_path), "TELEGRAM_ALLOWED_USERS", ",".join(x.strip() for x in users.split(",")))
     set_key(str(env_path), "TELEGRAM_ALLOW_ALL_USERS", "false")
     env_path.chmod(0o600)
+    sync_job_channel()
     print("Telegram settings saved in the Docker volume. Start the gateway to connect.")
+
+
+def sync_job_channel() -> None:
+    if Path("/job-channel").is_dir():
+        sys.path.insert(0, "/deployment/jobs")
+        from sync_channel import sync
+        sync()
 
 
 def main() -> None:
@@ -109,6 +117,7 @@ def main() -> None:
     if action == "check":
         print("Local prerequisites are present. Live provider and Telegram connectivity still require a smoke test.")
         return
+    sync_job_channel()
     os.execvp("hermes", ["hermes", "gateway", "run"])
 
 

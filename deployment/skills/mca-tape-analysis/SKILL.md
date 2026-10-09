@@ -1,7 +1,7 @@
 ---
 name: mca-tape-analysis
 description: "Run MCA tape checks and interpret engine results."
-version: 0.2.0
+version: 0.2.1
 author: Thor Abbasi, OpenAI Codex
 license: Proprietary
 platforms: [linux, macos, windows]
@@ -21,11 +21,13 @@ Operate the existing underwriting engine for MCA tapes and interpret its saved r
 
 ## Prerequisites
 
-The engine must be installed in the execution environment or exposed through a documented, configured service. The base Hermes deployment does not currently provide that connection. If absent, report "engine connection pending" and inventory inputs; do not claim a run.
+The engine must be installed or exposed through the configured job service. If /deployment/jobs/client.py and /jobs exist, load engine-jobs and check worker health; use that asynchronous interface for Telegram work. If absent or unavailable, report the actual connection state and inventory inputs; do not claim a run.
 The engine's Codex or Claude Code login is separate from Hermes authentication. Use the configured backend explicitly. Do not copy host credentials or install a substitute backend silently.
 Read the installed engine's help and version/revision before using commands. Paths below are placeholders that must be replaced with verified paths and shell-quoted as data.
 
 ## How to Run
+
+For the server job service, use engine-jobs. Submit once, preserve the job ID, and return promptly. Interpret results in a later requested review; the notifier sends the engine package independently. The remaining CLI examples apply only to a verified direct engine installation.
 
 For a local engine installation, use `terminal` with the verified CLI:
 - `underwrite --help`

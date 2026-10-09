@@ -3,7 +3,7 @@
 Deployment directory: `/opt/underwriting-agent`. Compose project: `zivoe-agents`.
 Use both Compose files for every server operation so the 3 GiB memory and 2 CPU
 limits are applied. Limits are ceilings, not reservations. No host ports are exposed.
-The separate engine service is not installed by this deployment.
+The optional engine worker is described in [engine jobs](engine-jobs.md). On servers using it, add `--env-file engine.env` and `-f compose.engine.yaml` to Compose commands, including Hermes credential setup and recreation.
 
 The deployment uses a Git archive of a recorded commit, not a checkout with GitHub
 credentials. `DEPLOYED_COMMIT` records that revision; `source.sha256` records the
