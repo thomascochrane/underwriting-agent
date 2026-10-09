@@ -1,6 +1,6 @@
 # Underwriting skills
 
-Ten custom skills (versions recorded in their frontmatter) are versioned in `deployment/skills/`. These are procedural instructions for the current underwriting profile, not separate agents or profiles. The existing engine retains its AI mapper and reviewer.
+Eleven custom skills (versions recorded in their frontmatter) are versioned in `deployment/skills/`. These are procedural instructions for the current underwriting profile, not separate agents or profiles. The existing engine retains its AI mapper and reviewer.
 
 | Scope | Skill | Expected output |
 | --- | --- | --- |
@@ -9,6 +9,7 @@ Ten custom skills (versions recorded in their frontmatter) are versioned in `dep
 | General | originator-financial-review | Financial review with traceable calculations |
 | General | transaction-structure-review | Party/obligation map and cited deal terms |
 | General | credit-memo-drafting | Draft memo and consolidated lender questions |
+| General | preliminary-credit-memo | Zivoe Word memo, exhibits and separate review-council findings |
 | General | portfolio-performance-review | Reporting variances and original-thesis monitoring |
 | General | underwriting-learning | Persistent case history and evidence-linked lessons |
 | General | engine-jobs | Persistent engine submission, status and delivery tracking |
@@ -72,10 +73,18 @@ The [synthetic evaluation pack](../evaluation/README.md) contains fictional inpu
 separate reviewer rubric. The Test action checks fixture arithmetic and consistency.
 The fixture is not mounted into normal Hermes conversations and the rubric must be withheld
 from a future model-backed evaluation. That evaluation remains NOT RUN.
-The earlier CRM/person-specific workflows are not part of this deployment. Only the ten underwriting skills are custom-installed; generic upstream skills, including document handling, remain available.
+The earlier CRM/person-specific workflows are not part of this deployment. Only the eleven underwriting skills are custom-installed; generic upstream skills, including document handling, remain available.
 
 ## Learning and ongoing reporting
 
 The new skills record original assessments, reviewer feedback, decisions and later performance separately. Private case events and versioned lessons live under /workspace/underwriting-learning/; deal evidence remains in the versioned review directories. Future reviews retrieve relevant lessons without treating another deal as current evidence. Weekly reports update the history when supplied; no reporting feed or recurring job is configured.
 
 This is persistent case-based learning, not model retraining. Learned hypotheses can guide review questions; changing credit policy or engine rules requires a separate recorded decision. Predictive improvement is unproven until tested on later unseen outcomes. See the learning skill reference for live-demo acceptance cases; authenticated behavioral evaluation remains pending.
+
+## Preliminary credit memorandum
+
+The preliminary-credit-memo skill adds the supplied house structure, full-source and financial-note review, analyst voice, source-dated exhibits, an eight-page Word limit, authentic letterhead, numbered revisions, and five independent review roles. The general memo skill routes to it for this format. Detailed coverage and issue records remain outside the reader-facing memo; material limitations still appear in the analysis and recommendation.
+
+The listed-security price/holders/recovery conventions are conditional. MCA and future asset classes retain the overall structure and use supported class-specific exhibits. The 25% daily-volume scenario is not an MCA credit rule. No exact recommended facility amount or margin-call trigger belongs in the recommendation, while sourced proposed terms and necessary calculation inputs remain allowed.
+
+No letterhead asset, document renderer, reviewer runtime or automatic completion callback is installed by adding these instructions. The skill checks availability and reports missing prerequisites. Server revisions live in the deal workspace and are returned through the authorized conversation; Windows Downloads is used only when actually accessible on Thor's computer. Full memo generation, pagination and the independent council still require a model-backed end-to-end test.

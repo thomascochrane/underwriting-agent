@@ -116,8 +116,8 @@ The engine overlay provides persistent tape jobs. Full multi-document review sti
 - [Model providers](https://hermes-agent.nousresearch.com/docs/integrations/providers/)
 ## General diligence and MCA skills
 
-Ten custom skills cover intake, evidence reconciliation, financial review,
-transaction structure, memo drafting, MCA tape analysis, MCA servicing review,
+Eleven custom skills cover intake, evidence reconciliation, financial review,
+transaction structure, memo drafting and preliminary Word memoranda, MCA tape analysis, MCA servicing review,
 ongoing performance review, evidence-backed underwriting learning, and persistent engine jobs.
 Install them with `.\scripts\hermes.ps1 -Action Skills` while the gateway is stopped.
 This works before authentication. See [skill scope, installation and demo cases](docs/skills.md).

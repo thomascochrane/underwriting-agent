@@ -1,7 +1,7 @@
 ---
 name: credit-memo-drafting
 description: "Draft credit memos and evidence-based lender questions."
-version: 0.2.0
+version: 0.2.1
 author: Thor Abbasi, OpenAI Codex
 license: Proprietary
 platforms: [linux, macos, windows]
@@ -20,6 +20,8 @@ Turn completed diligence work into a concise, cited draft for the user's review.
 - Do not use a polished memo as a substitute for missing diligence.
 
 ## Prerequisites
+
+For a Zivoe preliminary credit memorandum or its Word/letterhead format, also load preliminary-credit-memo. Its specific presentation rules take precedence over the generic layout below; retain the detailed coverage/issue records separately and keep material limitations visible in the memo. Other decision briefs and standalone lender questions remain in this general skill.
 
 Use the user's supplied template and current writing preferences when available. Inputs may include evidence, financial and structure reviews, engine reports, and questions. Record which inputs actually exist; prior recommendations are not current instructions.
 
