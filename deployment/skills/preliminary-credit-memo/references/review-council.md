@@ -11,7 +11,7 @@ Use five distinct roles:
 | Credit officer | Accuracy and completeness of repayment, collateral, liquidity and protection findings; omitted adverse evidence and unsupported credit judgments. Do not provide an investment recommendation. |
 | Securities or lending lawyer | Choose expertise applicable to the transaction; identify conditional legal mechanics, source limitations, enforceability dependencies, transfer/sale restrictions and drafting overclaims. No separate legal opinion. |
 | Numbers auditor | Independently recompute every derived figure from source inputs, including ratios, chart values, coverage, LTV, recovery cases, rounding and unit/currency conversions. Enumerate figures not reproducible. |
-| Editor | Factual analyst voice, defined terms, attribution, first-use acronym definitions, full-month dates, em dashes, exhibit/source labels, repetition, six-page cap and removal of recommendation language. |
+| Editor | All six approved sections, authentic Zivoe letterhead on every page, factual analyst voice, defined terms, attribution, first-use acronym definitions, full-month dates, em dashes, exhibit/source labels, repetition, six-page cap and removal of recommendation language. |
 | Skeptical head-of-fund reader | Challenge whether the factual presentation omits adverse evidence, hides assumptions, overstates verification or nudges an investment decision without support. |
 
 Require each finding to identify a draft locator, issue, materiality, supporting source/calculation or missing evidence, proposed correction, and uncertainty. Reviewers should work independently before the drafting agent reconciles findings. Neither an additional model nor a majority vote makes an unsupported claim true.
