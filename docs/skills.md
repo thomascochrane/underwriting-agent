@@ -9,7 +9,7 @@ Eleven custom skills (versions recorded in their frontmatter) are versioned in `
 | General | originator-financial-review | Financial review with traceable calculations |
 | General | transaction-structure-review | Party/obligation map and cited deal terms |
 | General | credit-memo-drafting | Draft memo and consolidated lender questions |
-| General | preliminary-credit-memo | Zivoe Word memo, exhibits and separate review-council findings |
+| General | preliminary-credit-memo | Factual Zivoe Word memo, maximum six pages, after engine and document analysis |
 | General | portfolio-performance-review | Reporting variances and original-thesis monitoring |
 | General | underwriting-learning | Persistent case history and evidence-linked lessons |
 | General | engine-jobs | Persistent engine submission, status and delivery tracking |
@@ -83,8 +83,8 @@ This is persistent case-based learning, not model retraining. Learned hypotheses
 
 ## Preliminary credit memorandum
 
-The preliminary-credit-memo skill adds the supplied house structure, full-source and financial-note review, analyst voice, source-dated exhibits, an eight-page Word limit, authentic letterhead, numbered revisions, and five independent review roles. The general memo skill routes to it for this format. Detailed coverage and issue records remain outside the reader-facing memo; material limitations still appear in the analysis and recommendation.
+The preliminary-credit-memo skill uses the supplied example as a rough presentation reference. It targets five pages with a hard six-page limit including exhibits and Sources, and defaults to factual findings with no recommendation, decision/counter-proposal or suggested funding conditions. It requires Hermes to inspect the engine results, finish supplied-document analysis and reconcile the sources before normal memo drafting. A new handoff reference records that readiness. Full financial-note review, analyst voice, source-dated exhibits, authentic letterhead, numbered revisions and five independent review roles remain. Reviewers check factual completeness rather than proposing an investment decision. The general memo skill routes to this format. Detailed coverage and issue records remain outside the reader-facing memo; material limitations still appear in its factual findings. The exact section arrangement remains a working structure for refinement with the user.
 
-The listed-security price/holders/recovery conventions are conditional. MCA and future asset classes retain the overall structure and use supported class-specific exhibits. The 25% daily-volume scenario is not an MCA credit rule. No exact recommended facility amount or margin-call trigger belongs in the recommendation, while sourced proposed terms and necessary calculation inputs remain allowed.
+The listed-security price/holders/recovery conventions are conditional. MCA and future asset classes use supported class-specific exhibits. The 25% daily-volume scenario is not an MCA credit rule or an observed fact; include it only if such a scenario is supplied or requested for the deal. Sourced proposed terms, contractual protections and necessary calculation inputs remain allowed, with their status clear. Detailed engine workbooks and audit records are separate supporting files, not appended pages to evade the six-page cap.
 
 No letterhead asset, document renderer, reviewer runtime or automatic completion callback is installed by adding these instructions. The skill checks availability and reports missing prerequisites. Server revisions live in the deal workspace and are returned through the authorized conversation; Windows Downloads is used only when actually accessible on Thor's computer. Full memo generation, pagination and the independent council still require a model-backed end-to-end test.

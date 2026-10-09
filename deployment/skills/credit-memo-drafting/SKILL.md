@@ -1,7 +1,7 @@
 ---
 name: credit-memo-drafting
 description: "Draft credit memos and evidence-based lender questions."
-version: 0.2.1
+version: 0.2.2
 author: Thor Abbasi, OpenAI Codex
 license: Proprietary
 platforms: [linux, macos, windows]
@@ -21,7 +21,7 @@ Turn completed diligence work into a concise, cited draft for the user's review.
 
 ## Prerequisites
 
-For a Zivoe preliminary credit memorandum or its Word/letterhead format, also load preliminary-credit-memo. Its specific presentation rules take precedence over the generic layout below; retain the detailed coverage/issue records separately and keep material limitations visible in the memo. Other decision briefs and standalone lender questions remain in this general skill.
+For a Zivoe preliminary credit memorandum or its Word/letterhead format, also load preliminary-credit-memo. Its factual-only scope, engine/document-analysis handoff and hard six-page cap take precedence over the generic layout and recommendation language below. Do not include an investment recommendation unless separately requested. Retain detailed coverage/issue records separately and keep material limitations visible in the memo. Other explicitly requested decision briefs and standalone lender questions remain in this general skill.
 
 Use the user's supplied template and current writing preferences when available. Inputs may include evidence, financial and structure reviews, engine reports, and questions. Record which inputs actually exist; prior recommendations are not current instructions.
 
@@ -29,7 +29,7 @@ Before creating outputs, load the shared record contract with `skill_view(name="
 
 ## Procedure
 
-1. Establish audience, review_id/date, decision and review scope. If no template exists, include executive assessment; transaction/borrower; portfolio; financial condition; structure and repayment; risks/mitigants; coverage and unresolved issues. A user template may change layout but must not hide material omissions or blockers.
+1. Establish audience, review_id/date and review scope, including whether the user actually requested a recommendation. The preliminary memo defaults to facts and calculations after analysis, without an approve/decline decision. If no template exists, include executive findings; transaction/borrower; portfolio; financial condition; structure and repayment; documented risks/protections; coverage and unresolved issues. A user template may change layout but must not hide material omissions or blockers.
 2. Build a claim checklist linking material numbers/assertions to retained document versions and evidence IDs or exact engine runs. Label source claims, calculations, inferences, scenarios and independent corroboration distinctly. Review the source manifest for changed versions before reusing an earlier finding.
 3. Describe engine verdict, AI-review status, methodology, tape date, and coverage separately. Engine PASS means its configured checks passed; it is not credit approval.
 4. Include a material-topic coverage table: portfolio/population, repayment, collateral, originator liquidity, structure and servicing as applicable. Show evidence dates, examined/partial/unreviewed/unreadable/not-applicable status, unperformed tests and consequences. Include adverse evidence and source conflicts. Each mitigant needs evidence and limitations; a stated policy or guarantee is not demonstrated effectiveness.
