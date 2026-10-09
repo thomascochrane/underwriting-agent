@@ -1,0 +1,7 @@
+# Server limits for the shared Jay/Thor/Kristal host.
+# Run with: docker compose -f compose.yaml -f compose.server.yaml ...
+services:
+  hermes:
+    mem_limit: 3g
+    memswap_limit: 3g
+    cpus: 2.0
