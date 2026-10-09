@@ -1,6 +1,6 @@
 [CmdletBinding()]
 param(
-    [ValidateSet('Initialize','Login','Model','Telegram','Start','Stop','Status','Logs','Chat','Shell','Check','Test')]
+    [ValidateSet('Initialize','Login','Model','Telegram','Start','Stop','Status','Logs','Chat','Shell','Check','Test','Skills')]
     [string]$Action = 'Status'
 )
 $ErrorActionPreference = 'Stop'
@@ -19,7 +19,7 @@ try {
             throw 'Stop the gateway before opening a maintenance session: .\scripts\hermes.ps1 -Action Stop'
         }
     }
-    if ($Action -in @('Initialize','Login','Model','Telegram','Chat','Shell')) {
+    if ($Action -in @('Initialize','Login','Model','Telegram','Chat','Shell','Skills')) {
         Assert-GatewayStopped
     }
     switch ($Action) {
@@ -63,10 +63,18 @@ try {
             Assert-GatewayStopped
             Invoke-Compose -ComposeArgs @('run','--rm','-T','hermes','/opt/hermes/.venv/bin/python','/deployment/runtime.py','check')
         }
+        'Skills' {
+            Invoke-Compose -ComposeArgs @('config','--quiet')
+            Invoke-Compose -ComposeArgs @('run','--rm','-T','hermes','/opt/hermes/.venv/bin/python','/deployment/skills.py','install')
+            Invoke-Compose -ComposeArgs @('run','--rm','-T','hermes','/opt/hermes/.venv/bin/python','/deployment/skills.py','verify')
+        }
         'Test' {
             Assert-GatewayStopped
             Invoke-Compose -ComposeArgs @('config','--quiet')
             Invoke-Compose -ComposeArgs @('run','--rm','-T','hermes','/opt/hermes/.venv/bin/python','/deployment/smoke_test.py')
+            Invoke-Compose -ComposeArgs @('run','--rm','-T','hermes','/opt/hermes/.venv/bin/python','/deployment/skills.py','check')
+            Invoke-Compose -ComposeArgs @('run','--rm','-T','hermes','/opt/hermes/.venv/bin/python','/deployment/test_skills.py')
+            Invoke-Compose -ComposeArgs @('run','--rm','-T','--volume',("${repoRoot}/evaluation:/evaluation:ro"),'hermes','/opt/hermes/.venv/bin/python','/deployment/test_fixture.py','/evaluation')
         }
         'Logs' { Invoke-Compose -ComposeArgs @('logs','--tail','100','-f','hermes') }
         'Chat' { Invoke-Compose -ComposeArgs @('run','--rm','hermes','chat') }

@@ -1,0 +1,19 @@
+{
+  "fictional": true,
+  "entity": "Cedar Originations",
+  "currency": "USD",
+  "period_end": "2026-06-30",
+  "reported_net_income": 120000,
+  "noncash_provision": 20000,
+  "cash_funded_receivables_increase": 300000,
+  "owner_distribution": 50000,
+  "other_net_cash_movement": 0,
+  "opening_cash": 390000,
+  "ending_cash": 180000,
+  "restricted_ending_cash": 100000,
+  "debt_service_next_30_days": 150000,
+  "nominal_undrawn_commitment": 500000,
+  "drawability_verified": false,
+  "covenant_definitions_provided": false,
+  "source": "04-financial-note.md; same management source, not independent corroboration"
+}

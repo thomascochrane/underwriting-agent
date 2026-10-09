@@ -14,3 +14,4 @@ underwriting runtime, ChatGPT authentication, and future Telegram/email connecti
 - Do not add other profiles or full diligence workflows until requested.
 - Validate Compose configuration and run bootstrap/idempotence/readiness smoke checks
   when changing deployment behavior. Do not print secret values while testing.
+- Keep this agent scoped to underwriting. Do not import prior CRM/person-specific skills, memories, or prompts from the separate agent. Generic document tools remain in scope.

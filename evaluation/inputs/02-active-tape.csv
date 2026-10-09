@@ -1,0 +1,5 @@
+advance_id,merchant_id,funded,cash_collected,renewal_credit,principal_outstanding,current_defaulted
+A1,M1,100000,50000,60000,15384.62,false
+A2,M2,100000,50000,60000,15384.62,false
+A3,M3,100000,50000,60000,15384.62,false
+A4,M4,100000,50000,60000,15384.62,false
