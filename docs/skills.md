@@ -61,7 +61,7 @@ Automated checks cover the pinned Hermes frontmatter validator, installation, re
 
 Version 0.2.0 addresses population completeness, metric interpretation, repayment/downside,
 cash conversion and liquidity headroom, topic coverage, decision blockers, source versions,
-and servicing sample limitations. See [remediation details](council-remediation.md).
+and servicing sample limitations.
 
 All skills use the [shared review record contract](../deployment/skills/diligence-evidence-review/references/review-records.md).
 A unique review directory retains source hashes/versions, manifest, evidence, coverage and
