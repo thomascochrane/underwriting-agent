@@ -1,7 +1,7 @@
 ---
 name: engine-jobs
 description: "Submit engine jobs and track results without waiting."
-version: 0.2.0
+version: 0.2.1
 author: Thor Abbasi, OpenAI Codex
 license: Proprietary
 platforms: [linux]
@@ -38,7 +38,7 @@ Use the installed persistent job service for engine work. Each job snapshots inp
 
 5. Retain the returned job ID and input manifest reference. Reply promptly that it is queued, with its ID and any unresolved limitations. End the chat turn; do not keep a terminal session polling, use a sleeping loop, or repeatedly ask the model for progress. The independent worker runs one job at a time. The notifier sends the factual completion summary and ZIP to the original authorized private chat when finished, without needing an active model conversation.
 6. When asked for progress, run `.../client.py status JOB_ID` once (same Python executable as above). `list` shows recent jobs. States distinguish queued, running, succeeded, completed_with_warnings, validation_failed, failed, interrupted, cancelled. Stage is actual recorded progress, not an estimated percentage. `succeeded` with engine PASS is not credit approval and does not certify that AI review succeeded. Inspect the run report and AI status before making claims.
-7. On completion the package contains engine artifacts/configuration provenance. Broader diligence review and the credit memo are separate work. Inspect the retained outputs under `/jobs/JOB_ID/`, use `mca-tape-analysis` to interpret them, and incorporate findings into the versioned evidence records. Tell the user what is still unreviewed. Do not duplicate the notifier's file send just because its delivery is pending.
+7. On completion the package contains raw engine artifacts/configuration provenance, not final branded diligence deliverables. Preserve these originals. Apply `/deployment/branding/README.md` to presentation copies and companion reports when preparing the final Hermes deliverables. Broader diligence review and the credit memo are separate work. Inspect the retained outputs under `/jobs/JOB_ID/`, use `mca-tape-analysis` to interpret them, and incorporate findings into the versioned evidence records. Tell the user what is still unreviewed. Do not duplicate the notifier's file send just because its delivery is pending.
 8. Cancellation: `.../client.py cancel JOB_ID` requests a stop; verify the resulting state before saying it stopped. After failure/interruption, diagnose first. An authorized rerun uses a new request key and `--parent-job OLD_JOB_ID`; original inputs/outputs remain available. Restarts do not automatically rerun potentially completed calculations.
 
 ## Pitfalls

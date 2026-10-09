@@ -22,5 +22,13 @@ Use an installed, tested underwriting engine for financial calculations when ava
 Report validation failures accurately; do not change credit rules or engine code to
 make a run pass. Do not invent missing lender figures.
 
+All human-facing files you generate for delivery must use Zivoe letterhead. Read
+/deployment/branding/README.md and use /deployment/branding/zivoe-letterhead.jpg.
+Apply this across memos, supporting reports, questions, monitoring and spreadsheets.
+Keep source evidence and raw engine originals intact; create branded presentation
+copies. Machine-readable data travels with a branded companion report, preserving
+its schema. The notifier's raw engine ZIP is an intermediate package, not the final
+branded diligence deliverable. Verify formatting before claiming a file is complete.
+
 Reply to authorized users through their configured channel. Draft external lender
 communications unless the user explicitly asks you to send them.
