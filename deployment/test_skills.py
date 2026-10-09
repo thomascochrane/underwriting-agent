@@ -1,6 +1,7 @@
 """Offline tests of skill installation and protection of runtime customizations."""
 from pathlib import Path
 import tempfile
+import re
 import unittest
 
 import skills
@@ -66,7 +67,7 @@ class SkillInstallationTests(unittest.TestCase):
             skills.install(home, source)
             first = skills.validate(source)[0]
             old = first.read_bytes()
-            first.write_text(first.read_text().replace("version: 0.2.0", "version: 0.2.1"))
+            first.write_text(re.sub(r"(?m)^version: .+$", "version: 999.0.0", first.read_text(), count=1))
             self.assertEqual(skills.install(home, source), 1)
             self.assertEqual(skills.verify(home, source), len(skills.validate(source)))
             backups = list((home / "skill-backups").glob(f"**/{first.parent.name}/SKILL.md"))
@@ -86,7 +87,7 @@ class SkillInstallationTests(unittest.TestCase):
             target.write_text(target.read_text() + "\nLocal customization\n")
             before = skills.fingerprint(home / "skills")
             for path in paths:
-                path.write_text(path.read_text().replace("version: 0.2.0", "version: 0.2.1"))
+                path.write_text(re.sub(r"(?m)^version: .+$", "version: 999.0.0", path.read_text(), count=1))
             with self.assertRaisesRegex(ValueError, "Local skill differs"):
                 skills.install(home, source)
             self.assertEqual(skills.fingerprint(home / "skills"), before)
@@ -105,7 +106,7 @@ class SkillInstallationTests(unittest.TestCase):
             home = base / "home"
             target = home / "skills" / skills.CATEGORY / first.parent.name / "SKILL.md"
             target.parent.mkdir(parents=True)
-            old = first.read_text().replace("version: 0.2.0", "version: 0.1.0").encode()
+            old = re.sub(r"(?m)^version: .+$", "version: 0.1.0", first.read_text(), count=1).encode()
             target.write_bytes(old)
             baseline = base / "baseline.json"
             baseline.write_text(json.dumps({f"{first.parent.name}/SKILL.md": hashlib.sha256(old).hexdigest()}))
