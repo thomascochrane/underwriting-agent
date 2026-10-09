@@ -1,6 +1,6 @@
 # Underwriting skills
 
-Seven custom skills (version 0.2.0) are versioned in `deployment/skills/`. These are procedural instructions for the current underwriting profile, not separate agents or profiles. The existing engine retains its AI mapper and reviewer.
+Nine custom skills (version 0.2.0) are versioned in `deployment/skills/`. These are procedural instructions for the current underwriting profile, not separate agents or profiles. The existing engine retains its AI mapper and reviewer.
 
 | Scope | Skill | Expected output |
 | --- | --- | --- |
@@ -9,6 +9,8 @@ Seven custom skills (version 0.2.0) are versioned in `deployment/skills/`. These
 | General | originator-financial-review | Financial review with traceable calculations |
 | General | transaction-structure-review | Party/obligation map and cited deal terms |
 | General | credit-memo-drafting | Draft memo and consolidated lender questions |
+| General | portfolio-performance-review | Reporting variances and original-thesis monitoring |
+| General | underwriting-learning | Persistent case history and evidence-linked lessons |
 | MCA | mca-tape-analysis | Engine run summary, artifacts and limitations |
 | MCA | mca-underwriting-servicing | Policy/practice review and focused questions |
 
@@ -69,4 +71,10 @@ The [synthetic evaluation pack](../evaluation/README.md) contains fictional inpu
 separate reviewer rubric. The Test action checks fixture arithmetic and consistency.
 The fixture is not mounted into normal Hermes conversations and the rubric must be withheld
 from a future model-backed evaluation. That evaluation remains NOT RUN.
-The earlier CRM/person-specific workflows are not part of this deployment. Only the seven underwriting skills are custom-installed; generic upstream skills, including document handling, remain available.
+The earlier CRM/person-specific workflows are not part of this deployment. Only the nine underwriting skills are custom-installed; generic upstream skills, including document handling, remain available.
+
+## Learning and ongoing reporting
+
+The new skills record original assessments, reviewer feedback, decisions and later performance separately. Private case events and versioned lessons live under /workspace/underwriting-learning/; deal evidence remains in the versioned review directories. Future reviews retrieve relevant lessons without treating another deal as current evidence. Weekly reports update the history when supplied; no reporting feed or recurring job is configured.
+
+This is persistent case-based learning, not model retraining. Learned hypotheses can guide review questions; changing credit policy or engine rules requires a separate recorded decision. Predictive improvement is unproven until tested on later unseen outcomes. See the learning skill reference for live-demo acceptance cases; authenticated behavioral evaluation remains pending.

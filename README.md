@@ -116,8 +116,9 @@ This container is the runtime foundation, not a finished underwriting workflow.
 - [Model providers](https://hermes-agent.nousresearch.com/docs/integrations/providers/)
 ## General diligence and MCA skills
 
-Seven custom skills cover intake, evidence reconciliation, financial review,
-transaction structure, memo drafting, MCA tape analysis, and MCA servicing review.
+Nine custom skills cover intake, evidence reconciliation, financial review,
+transaction structure, memo drafting, MCA tape analysis, MCA servicing review,
+ongoing performance review, and evidence-backed underwriting learning.
 Install them with `.\scripts\hermes.ps1 -Action Skills` while the gateway is stopped.
 This works before authentication. See [skill scope, installation and demo cases](docs/skills.md).
 The engine retains its own AI mapper and reviewer; connecting the engine remains a separate step.
