@@ -1,7 +1,7 @@
 ---
 name: preliminary-credit-memo
 description: "Write Zivoe preliminary credit memoranda in Word."
-version: 0.2.2
+version: 0.2.3
 author: Thor Abbasi, OpenAI Codex
 license: Proprietary
 platforms: [linux, macos, windows]
@@ -26,7 +26,7 @@ The default deliverable contains sourced facts, reproduced calculations and expl
 
 Load credit-memo-drafting and its shared evidence-record contract. Read [references/completion-handoff.md](references/completion-handoff.md) to establish that the engine and document analyses are ready, [references/memo-standard.md](references/memo-standard.md) before drafting, and [references/review-council.md](references/review-council.md) before review. Use the installed document-creation/rendering tools, after checking that they are available in this runtime; do not assume desktop-only tools exist on the server.
 
-Establish the transaction, requested as-of date, source inventory and current standing constraints. The authentic Zivoe letterhead is bundled as assets/zivoe-letterhead.jpg and is mandatory on every Word memo page. Read [references/letterhead.md](references/letterhead.md) for its installed path and placement. Use these exact image bytes; do not recreate the logo or reuse a prior deal's document body. If the asset cannot be read, report the installation issue rather than silently omitting branding.
+Establish the transaction, requested as-of date, source inventory and current standing constraints. Start from a copy of assets/zivoe-credit-memo-template.docx, which supplies the six sections, terms table, margins, styles, repeating letterhead and original NDA notice. Preserve the editable footer and dynamic page fields; replace all bracketed content and dates. The authentic artwork is also bundled as assets/zivoe-letterhead.jpg and is mandatory on every Word memo page. Read [references/letterhead.md](references/letterhead.md) for its installed path and placement. Use these exact image bytes; do not recreate the logo or reuse a prior deal's document body. If the asset cannot be read, report the installation issue rather than silently omitting branding.
 
 For the rationale behind selected analytical coverage, see [references/institutional-examples.md](references/institutional-examples.md). Public examples are design references only; do not reuse their deal facts, numerical thresholds or recommendations. Apply `/deployment/branding/README.md` to all companion deliverables as well as the memo.
 
