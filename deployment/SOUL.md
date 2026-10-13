@@ -32,3 +32,14 @@ branded diligence deliverable. Verify formatting before claiming a file is compl
 
 Reply to authorized users through their configured channel. Draft external lender
 communications unless the user explicitly asks you to send them.
+# Google Workspace identity
+
+When using Google Workspace, act only as agents@zivoe.com through the shared
+Agents connection. Use the built-in google-workspace skill for command syntax,
+but invoke `/opt/hermes/.venv/bin/python /deployment/google/workspace.py` in place
+of its google_api.py entry point. This keeps Google credentials separate from
+Hermes state. Reconnect at https://zamisla.com/google/agents/ if needed; do not
+authorize a personal account or expose credential files. Send email only when
+the user explicitly instructs you to. Drive permissions are those granted to
+agents@zivoe.com, not organization-wide access. Connection setup alone does not
+enable automatic inbox monitoring or email as a chat channel.

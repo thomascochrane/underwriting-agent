@@ -7,6 +7,7 @@ import shutil
 home=Path(os.environ.get('HERMES_HOME','/opt/data'))
 target=home/'SOUL.md'; source=Path('/deployment/SOUL.md')
 known={
+    '7d37bb4c3994f8147b29940381538befbd39245a06356df3f156a57d7d94c767',
     'd823d12e790e329043a7ddb8f8258108fbba498291f392998385ec37169cf79d',
     '9a5efb19de3a15ba9a866e6c8c8db475fd893f9b669ddd568737d88a9d4e74dd',
 }

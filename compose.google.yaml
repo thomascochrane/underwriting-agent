@@ -1,0 +1,36 @@
+# Optional server-only hosted connection for agents@zivoe.com.
+services:
+  hermes:
+    volumes:
+      - /opt/zivoe-google-agents:/google-agents
+  google-agents:
+    image: nousresearch/hermes-agent@sha256:9774f4f39a9bb8c2f68ce728ed5e99ddbad282163be56764afacf88ed952b784
+    user: "10000:10000"
+    restart: unless-stopped
+    entrypoint: ["/opt/hermes/.venv/bin/python", "-I"]
+    command: ["/deployment/google/portal.py"]
+    environment:
+      GOOGLE_AGENTS_HOME: /google-agents
+      GOOGLE_ACCESS_EMAIL: "${GOOGLE_ACCESS_EMAIL:?Set the Cloudflare Access administrator email}"
+    volumes:
+      - /opt/zivoe-google-agents:/google-agents
+      - ./deployment/google:/deployment/google:ro
+    ports:
+      - "127.0.0.1:9222:8766"
+    read_only: true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=16m
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    mem_limit: 256m
+    cpus: 0.25
+    healthcheck:
+      test: ["CMD", "/opt/hermes/.venv/bin/python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8766/healthz', timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"

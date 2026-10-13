@@ -6,4 +6,7 @@ args=(-f compose.yaml -f compose.server.yaml)
 if [[ -f engine.env ]]; then
   args=(--env-file engine.env "${args[@]}" -f compose.engine.yaml)
 fi
+if [[ -f google.env ]]; then
+  args=(--env-file google.env "${args[@]}" -f compose.google.yaml)
+fi
 exec docker compose "${args[@]}" "$@"

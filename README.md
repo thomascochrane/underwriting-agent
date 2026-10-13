@@ -3,7 +3,11 @@
 Base Hermes deployment for Zivoe underwriting. Runs independently of the existing
 Hermes/Open WebUI installation. Current scope: one assistant, ChatGPT subscription
 authentication, Telegram when configured, and a persistent local workspace.
-Email is a later connection; no browser frontend or public ports are enabled.
+The optional [shared Agents Google connection](docs/google-agents.md) provides
+hosted Google authorization at `/google/agents/` for `agents@zivoe.com`.
+No chat frontend or public host ports are enabled; the OAuth overlay publishes
+one loopback port for the authenticated Cloudflare tunnel. Automatic email intake
+remains a later integration.
 
 ## Quick start (Windows / Docker Desktop)
 

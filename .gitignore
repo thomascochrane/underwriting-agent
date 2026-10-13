@@ -21,3 +21,6 @@ channel-state/
 engine/source/
 engine.env
 engine/build-provenance.json
+google.env
+google_client_secret.json
+google_token.json
