@@ -107,7 +107,7 @@ class OAuthTests(unittest.TestCase):
         self.assertEqual(denied.exception.code, 403)
         headers = {"Cf-Access-Authenticated-User-Email": "admin@example.com"}
         with urllib.request.urlopen(urllib.request.Request(base + "/google/agents/", headers=headers)) as response:
-            self.assertIn(b"Connect agents@zivoe.com", response.read())
+            self.assertIn(b"Connect Google Workspace", response.read())
             self.assertEqual(response.headers["Cache-Control"], "no-store")
         with self.assertRaises(urllib.error.HTTPError) as denied:
             urllib.request.urlopen(urllib.request.Request(base + "/google/agents/connect", data=b"", headers={**headers, "Origin": "https://wrong.example"}))
