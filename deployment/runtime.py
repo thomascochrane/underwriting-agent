@@ -8,6 +8,7 @@ import os
 from pathlib import Path
 import re
 import shutil
+import subprocess
 import sys
 
 sys.path.insert(0, '/opt/hermes')
@@ -57,13 +58,40 @@ def codex_logged_in() -> bool:
     return bool(get_codex_auth_status().get("logged_in"))
 
 
+def claude_logged_in() -> bool:
+    binary = os.environ.get("CLAUDE_SUBSCRIPTION_DIRECTSDK_COMMAND", "/opt/data/claude-cli/node_modules/.bin/claude")
+    if not (HOME / "plugins" / "claude-subscription-directsdk-experimental" / "plugin.yaml").is_file():
+        return False
+    env = dict(os.environ)
+    env["CLAUDE_CONFIG_DIR"] = os.environ.get("CLAUDE_SUBSCRIPTION_DIRECTSDK_CONFIG_DIR", str(HOME / "claude-config"))
+    try:
+        result = subprocess.run([binary, "auth", "status"], env=env, capture_output=True, text=True, timeout=20)
+        status = json.loads(result.stdout)
+        return result.returncode == 0 and status.get("loggedIn") is True and status.get("authMethod") == "oauth"
+    except (OSError, ValueError, subprocess.TimeoutExpired):
+        return False
+
+
+def model_readiness() -> dict:
+    try:
+        config = yaml.safe_load((HOME / "config.yaml").read_text()) or {}
+        provider = (config.get("model") or {}).get("provider", "openai-codex")
+    except (OSError, ValueError, yaml.YAMLError):
+        return {"model_configuration_valid": False}
+    if provider == "openai-codex":
+        return {"chatgpt_logged_in": codex_logged_in()}
+    if provider == "claude-subscription-directsdk-experimental":
+        return {"claude_subscription_logged_in": claude_logged_in()}
+    return {"supported_model_provider": False}
+
+
 def readiness() -> dict:
     env = dotenv_values(HOME / ".env")
     token = env.get("TELEGRAM_BOT_TOKEN", "") or ""
     users = env.get("TELEGRAM_ALLOWED_USERS", "") or ""
     return {
         "initialized": MARKER.exists(),
-        "chatgpt_logged_in": codex_logged_in(),
+        **model_readiness(),
         "telegram_token_present": bool(re.fullmatch(r"[0-9]+:[A-Za-z0-9_-]+", token)),
         "telegram_users_configured": bool(re.fullmatch(r"[0-9]+(?:\s*,\s*[0-9]+)*", users)),
         "workspace_writable": os.access("/workspace", os.W_OK),

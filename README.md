@@ -9,6 +9,11 @@ No chat frontend or public host ports are enabled; the OAuth overlay publishes
 one loopback port for the authenticated Cloudflare tunnel. Automatic email intake
 remains a later integration.
 
+[Claude subscription setup](docs/claude-subscription.md) adds the official Claude
+Code CLI and experimental Hermes subscription provider as a separate model option.
+The startup check requires authentication for the selected provider (OpenAI or
+Claude), plus the existing initialization and private Telegram prerequisites.
+
 ## Quick start (Windows / Docker Desktop)
 
 From this repository in PowerShell:

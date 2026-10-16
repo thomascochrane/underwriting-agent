@@ -71,6 +71,32 @@ class DeploymentTests(unittest.TestCase):
                 runtime.configure_telegram()
         self.assertEqual((self.home / ".env").read_bytes(), before)
 
+    def test_selected_claude_does_not_require_openai_but_requires_own_login(self):
+        self.initialize()
+        (self.home / "config.yaml").write_text("model: {provider: claude-subscription-directsdk-experimental}\n")
+        with patch.object(runtime, "codex_logged_in") as openai, patch.object(runtime, "claude_logged_in", return_value=False):
+            self.assertEqual(runtime.model_readiness(), {"claude_subscription_logged_in": False})
+            openai.assert_not_called()
+        with patch.object(runtime, "claude_logged_in", return_value=True):
+            self.assertEqual(runtime.model_readiness(), {"claude_subscription_logged_in": True})
+
+    def test_unknown_provider_fails_closed(self):
+        self.initialize()
+        (self.home / "config.yaml").write_text("model: {provider: unknown}\n")
+        self.assertEqual(runtime.model_readiness(), {"supported_model_provider": False})
+
+    def test_claude_rejects_api_key_auth_and_missing_plugin(self):
+        self.assertFalse(runtime.claude_logged_in())
+        manifest = self.home / "plugins" / "claude-subscription-directsdk-experimental" / "plugin.yaml"
+        manifest.parent.mkdir(parents=True)
+        manifest.write_text("name: test\n")
+        result = runtime.subprocess.CompletedProcess([], 0, '{"loggedIn": true, "authMethod": "api_key"}')
+        with patch.object(runtime.subprocess, "run", return_value=result):
+            self.assertFalse(runtime.claude_logged_in())
+        result.stdout = '{"loggedIn": true, "authMethod": "oauth"}'
+        with patch.object(runtime.subprocess, "run", return_value=result):
+            self.assertTrue(runtime.claude_logged_in())
+
     def test_gateway_refuses_missing_credentials(self):
         self.initialize()
         with patch.object(runtime, "codex_logged_in", return_value=False), \

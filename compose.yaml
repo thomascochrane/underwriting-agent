@@ -13,6 +13,11 @@ services:
       HERMES_HOME: /opt/data
       HERMES_DASHBOARD: "0"
       API_SERVER_ENABLED: "false"
+      # Official Claude CLI owns its subscription login in the existing private volume.
+      CLAUDE_CONFIG_DIR: /opt/data/claude-config
+      CLAUDE_SUBSCRIPTION_DIRECTSDK_CONFIG_DIR: /opt/data/claude-config
+      CLAUDE_SUBSCRIPTION_DIRECTSDK_COMMAND: /opt/data/claude-cli/node_modules/.bin/claude
+      DISABLE_AUTOUPDATER: "1"
     # Telegram long polling and future IMAP need outbound access only.
     # No host ports, Docker socket, host credentials, or full home-directory mounts.
     volumes:
